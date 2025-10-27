@@ -15,7 +15,7 @@ HOST_NAME = "localhost"
 SERVER_PORT = 8080
 DB_FILENAME = "totally_not_my_privateKeys.db"
 
-# --- Utilities --------------------------------------------------------------
+# --- Utilities ---
 
 def int_to_base64(value: int) -> str:
     """Convert an integer to a Base64URL-encoded string without padding."""
@@ -32,12 +32,12 @@ def now_epoch() -> int:
     return int(time.time())
 
 
-# --- Database helpers ------------------------------------------------------
+# --- Database helpers ---
 
 def get_db_connection():
     """Open (and create if needed) the SQLite DB, return connection."""
     conn = sqlite3.connect(DB_FILENAME)
-    # Ensure rows are returned as tuples (we only need simple access)
+    # Ensure rows are returned as tuples
     return conn
 
 
@@ -48,7 +48,7 @@ def init_db_and_seed_if_needed():
     """
     conn = get_db_connection()
     cur = conn.cursor()
-    # Create table with the exact schema required
+    # Create table with required schema
     cur.execute(
         """
         CREATE TABLE IF NOT EXISTS keys(
@@ -119,11 +119,11 @@ def fetch_all_valid_keys():
 init_db_and_seed_if_needed()
 
 
-# --- HTTP server handler ---------------------------------------------------
+# --- HTTP server handler ---
 
 class MyServer(BaseHTTPRequestHandler):
     def log_message(self, format, *args):
-        # Override to reduce noise; comment this out to enable default logging.
+        # Override to reduce noise;
         return
 
     def do_PUT(self):
@@ -164,7 +164,7 @@ class MyServer(BaseHTTPRequestHandler):
             # Load private key from PEM bytes
             private_key = serialization.load_pem_private_key(pem_blob, password=None, backend=default_backend())
 
-            # Build token payload; note: use numeric exp claim in seconds
+            # Build token payload;
             exp_time = int(datetime.datetime.utcnow().timestamp()) + 3600  # token expires in 1 hour
             if expired_flag:
                 # If requesting an expired-signed token, put an already-expired exp claim
@@ -232,7 +232,7 @@ class MyServer(BaseHTTPRequestHandler):
         self.end_headers()
 
 
-# --- Run server -------------------------------------------------------------
+# --- Run server ---
 if __name__ == "__main__":
     webServer = HTTPServer((HOST_NAME, SERVER_PORT), MyServer)
     print(f"Server starting on http://{HOST_NAME}:{SERVER_PORT} ...")
