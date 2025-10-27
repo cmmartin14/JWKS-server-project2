@@ -2,6 +2,13 @@
 
 <img width="1104" height="323" alt="Screenshot 2025-10-26 at 7 26 30 PM" src="https://github.com/user-attachments/assets/428aa6a5-5ee4-47f6-8bda-cedc205b4eea" />
 
+### Language, Platform, and Setup
+
+Python 3.13.5
+macOS Sonoma 14.5
+
+...
+
 ### AI Use Summary
 
 I used AI to help me update my project 1 code to open the totally_not_my_privateKeys.db file at the start, figure out how to write my private keys to the file, and learn how to modify the POST:/auth and GET:/.well-known/jwks.json endpoints to use the database. I also asked it to help me fix errors I got when I ran my code against the grade bot.
