@@ -5,9 +5,11 @@
 ### Language, Platform, and Setup
 
 Python 3.13.5
+
 macOS Sonoma 14.5
 
-...
+1. In one terminal tab inside the project directory, run: python3 main.py
+2. In another tab, run: ./gradebot project2;
 
 ### AI Use Summary
 
